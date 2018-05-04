@@ -1,0 +1,22 @@
+[
+    {
+        "ID": "1",
+        "Country": "BR",
+        "Name": "SporTV"
+    },
+    {
+        "ID": "2",
+        "Country": "BR",
+        "Name": "Esporte Interativo"
+    },
+    {
+        "ID": "3",
+        "Country": "BR",
+        "Name": "Globo"
+    },
+    {
+        "ID": "4",
+        "Country": "BR",
+        "Name": "ESPN"
+    }
+]

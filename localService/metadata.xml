@@ -1,0 +1,192 @@
+<edmx:Edmx Version="1.0" 
+	xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" 
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" 
+	xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="bbad140c9f36b8000f817818" xml:lang="en" sap:schema-version="0000" 
+			xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityContainer Name="bbad140c9f36b8000f817818_Entities" m:IsDefaultEntityContainer="true">
+				<EntitySet Name="ClubSet" EntityType="bbad140c9f36b8000f817818.Club" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+				<EntitySet Name="LeagueSet" EntityType="bbad140c9f36b8000f817818.League" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+				<AssociationSet Name="LeagueConfigConfig" Association="bbad140c9f36b8000f817818.LeagueConfigConfig" sap:creatable="true" sap:updatable="true" sap:deletable="true">
+					<End EntitySet="LeagueSet" Role="FromRole_LeagueConfigConfig"/>
+					<End EntitySet="ConfigSet" Role="ToRole_LeagueConfigConfig"/>
+				</AssociationSet>
+				<EntitySet Name="ChannelSet" EntityType="bbad140c9f36b8000f817818.Channel" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+				<EntitySet Name="PenaltySet" EntityType="bbad140c9f36b8000f817818.Penalty" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+				<AssociationSet Name="PenaltyClubClub" Association="bbad140c9f36b8000f817818.PenaltyClubClub" sap:creatable="true" sap:updatable="true" sap:deletable="true">
+					<End EntitySet="PenaltySet" Role="FromRole_PenaltyClubClub"/>
+					<End EntitySet="ClubSet" Role="ToRole_PenaltyClubClub"/>
+				</AssociationSet>
+				<AssociationSet Name="PenaltyClub1Club" Association="bbad140c9f36b8000f817818.PenaltyClub1Club" sap:creatable="true" sap:updatable="true" sap:deletable="true">
+					<End EntitySet="PenaltySet" Role="FromRole_PenaltyClub1Club"/>
+					<End EntitySet="ClubSet" Role="ToRole_PenaltyClub1Club"/>
+				</AssociationSet>
+				<AssociationSet Name="PenaltyChannelChannel" Association="bbad140c9f36b8000f817818.PenaltyChannelChannel" sap:creatable="true" sap:updatable="true" sap:deletable="true">
+					<End EntitySet="PenaltySet" Role="FromRole_PenaltyChannelChannel"/>
+					<End EntitySet="ChannelSet" Role="ToRole_PenaltyChannelChannel"/>
+				</AssociationSet>
+				<AssociationSet Name="PenaltyLeagueLeague" Association="bbad140c9f36b8000f817818.PenaltyLeagueLeague" sap:creatable="true" sap:updatable="true" sap:deletable="true">
+					<End EntitySet="PenaltySet" Role="FromRole_PenaltyLeagueLeague"/>
+					<End EntitySet="LeagueSet" Role="ToRole_PenaltyLeagueLeague"/>
+				</AssociationSet>
+				<AssociationSet Name="PenaltyBlowerBlower" Association="bbad140c9f36b8000f817818.PenaltyBlowerBlower" sap:creatable="true" sap:updatable="true" sap:deletable="true">
+					<End EntitySet="PenaltySet" Role="FromRole_PenaltyBlowerBlower"/>
+					<End EntitySet="BlowerSet" Role="ToRole_PenaltyBlowerBlower"/>
+				</AssociationSet>
+				<EntitySet Name="BlowerSet" EntityType="bbad140c9f36b8000f817818.Blower" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+				<EntitySet Name="ConfigSet" EntityType="bbad140c9f36b8000f817818.Config" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+				<AssociationSet Name="ConfigBlowerBlower" Association="bbad140c9f36b8000f817818.ConfigBlowerBlower" sap:creatable="true" sap:updatable="true" sap:deletable="true">
+					<End EntitySet="ConfigSet" Role="FromRole_ConfigBlowerBlower"/>
+					<End EntitySet="BlowerSet" Role="ToRole_ConfigBlowerBlower"/>
+				</AssociationSet>
+			</EntityContainer>
+			<EntityType Name="Club">
+				<Key>
+					<PropertyRef Name="ID"/>
+				</Key>
+				<Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+				<Property Name="Logo" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Logo"/>
+				<Property Name="Name" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Name"/>
+				<Property Name="Twitter" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Twitter"/>
+			</EntityType>
+			<EntityType Name="League">
+				<Key>
+					<PropertyRef Name="ID"/>
+				</Key>
+				<Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+				<Property Name="Name" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Name"/>
+				<Property Name="Twitter" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Twitter"/>
+				<NavigationProperty Name="Config" Relationship="bbad140c9f36b8000f817818.LeagueConfigConfig" FromRole="FromRole_LeagueConfigConfig" ToRole="ToRole_LeagueConfigConfig"/>
+			</EntityType>
+			<Association Name="LeagueConfigConfig">
+				<End Type="bbad140c9f36b8000f817818.League" Multiplicity="1" Role="FromRole_LeagueConfigConfig"/>
+				<End Type="bbad140c9f36b8000f817818.Config" Multiplicity="*" Role="ToRole_LeagueConfigConfig"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_LeagueConfigConfig">
+						<PropertyRef Name="ID"/>
+					</Principal>
+					<Dependent Role="ToRole_LeagueConfigConfig">
+						<PropertyRef Name="___FK_80a6a5602e4a55e50fad4b9a_00000"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityType Name="Channel">
+				<Key>
+					<PropertyRef Name="ID"/>
+				</Key>
+				<Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+				<Property Name="Country" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Country"/>
+				<Property Name="Name" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="DefaultName"/>
+				<Property Name="Twitter" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Twitter"/>
+			</EntityType>
+			<EntityType Name="Penalty">
+				<Key>
+					<PropertyRef Name="ID"/>
+				</Key>
+				<Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+				<Property Name="___FK_02e428da88d2f1370f81822d_00000" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="___FK_02e428da88d2f1370f81822d_00000"/>
+				<Property Name="___FK_a9d0be8ecce033920f818246_00000" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="___FK_a9d0be8ecce033920f818246_00000"/>
+				<Property Name="___FK_ecd85e595574502b0f818250_00000" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="___FK_ecd85e595574502b0f818250_00000"/>
+				<Property Name="___FK_ca843e2a36ae5b120f818258_00000" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="___FK_ca843e2a36ae5b120f818258_00000"/>
+				<Property Name="AlertedOn" Type="Edm.DateTime" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:display-format="Date" sap:label="DateInsert"/>
+				<Property Name="ApprovedOn" Type="Edm.DateTime" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:display-format="Date" sap:label="DateApproved"/>
+				<Property Name="___FK_99c9ce041abfd5080f81902b_00000" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="___FK_99c9ce041abfd5080f81902b_00000"/>
+				<NavigationProperty Name="Club" Relationship="bbad140c9f36b8000f817818.PenaltyClubClub" FromRole="FromRole_PenaltyClubClub" ToRole="ToRole_PenaltyClubClub"/>
+				<NavigationProperty Name="Club1" Relationship="bbad140c9f36b8000f817818.PenaltyClub1Club" FromRole="FromRole_PenaltyClub1Club" ToRole="ToRole_PenaltyClub1Club"/>
+				<NavigationProperty Name="Channel" Relationship="bbad140c9f36b8000f817818.PenaltyChannelChannel" FromRole="FromRole_PenaltyChannelChannel" ToRole="ToRole_PenaltyChannelChannel"/>
+				<NavigationProperty Name="League" Relationship="bbad140c9f36b8000f817818.PenaltyLeagueLeague" FromRole="FromRole_PenaltyLeagueLeague" ToRole="ToRole_PenaltyLeagueLeague"/>
+				<NavigationProperty Name="Blower" Relationship="bbad140c9f36b8000f817818.PenaltyBlowerBlower" FromRole="FromRole_PenaltyBlowerBlower" ToRole="ToRole_PenaltyBlowerBlower"/>
+			</EntityType>
+			<Association Name="PenaltyClubClub">
+				<End Type="bbad140c9f36b8000f817818.Penalty" Multiplicity="1" Role="FromRole_PenaltyClubClub"/>
+				<End Type="bbad140c9f36b8000f817818.Club" Multiplicity="1" Role="ToRole_PenaltyClubClub"/>
+				<ReferentialConstraint>
+					<Principal Role="ToRole_PenaltyClubClub">
+						<PropertyRef Name="ID"/>
+					</Principal>
+					<Dependent Role="FromRole_PenaltyClubClub">
+						<PropertyRef Name="___FK_02e428da88d2f1370f81822d_00000"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="PenaltyClub1Club">
+				<End Type="bbad140c9f36b8000f817818.Penalty" Multiplicity="1" Role="FromRole_PenaltyClub1Club"/>
+				<End Type="bbad140c9f36b8000f817818.Club" Multiplicity="1" Role="ToRole_PenaltyClub1Club"/>
+				<ReferentialConstraint>
+					<Principal Role="ToRole_PenaltyClub1Club">
+						<PropertyRef Name="ID"/>
+					</Principal>
+					<Dependent Role="FromRole_PenaltyClub1Club">
+						<PropertyRef Name="___FK_a9d0be8ecce033920f818246_00000"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="PenaltyChannelChannel">
+				<End Type="bbad140c9f36b8000f817818.Penalty" Multiplicity="1" Role="FromRole_PenaltyChannelChannel"/>
+				<End Type="bbad140c9f36b8000f817818.Channel" Multiplicity="1" Role="ToRole_PenaltyChannelChannel"/>
+				<ReferentialConstraint>
+					<Principal Role="ToRole_PenaltyChannelChannel">
+						<PropertyRef Name="ID"/>
+					</Principal>
+					<Dependent Role="FromRole_PenaltyChannelChannel">
+						<PropertyRef Name="___FK_ecd85e595574502b0f818250_00000"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="PenaltyLeagueLeague">
+				<End Type="bbad140c9f36b8000f817818.Penalty" Multiplicity="1" Role="FromRole_PenaltyLeagueLeague"/>
+				<End Type="bbad140c9f36b8000f817818.League" Multiplicity="1" Role="ToRole_PenaltyLeagueLeague"/>
+				<ReferentialConstraint>
+					<Principal Role="ToRole_PenaltyLeagueLeague">
+						<PropertyRef Name="ID"/>
+					</Principal>
+					<Dependent Role="FromRole_PenaltyLeagueLeague">
+						<PropertyRef Name="___FK_ca843e2a36ae5b120f818258_00000"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="PenaltyBlowerBlower">
+				<End Type="bbad140c9f36b8000f817818.Penalty" Multiplicity="1" Role="FromRole_PenaltyBlowerBlower"/>
+				<End Type="bbad140c9f36b8000f817818.Blower" Multiplicity="1" Role="ToRole_PenaltyBlowerBlower"/>
+				<ReferentialConstraint>
+					<Principal Role="ToRole_PenaltyBlowerBlower">
+						<PropertyRef Name="ID"/>
+					</Principal>
+					<Dependent Role="FromRole_PenaltyBlowerBlower">
+						<PropertyRef Name="___FK_99c9ce041abfd5080f81902b_00000"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityType Name="Blower">
+				<Key>
+					<PropertyRef Name="ID"/>
+				</Key>
+				<Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+				<Property Name="Name" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Name"/>
+				<Property Name="Joined" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Joined"/>
+			</EntityType>
+			<EntityType Name="Config">
+				<Key>
+					<PropertyRef Name="ID"/>
+				</Key>
+				<Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+				<Property Name="___FK_8b6603cf600b82730fad4af4_00000" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="___FK_8b6603cf600b82730fad4af4_00000"/>
+				<Property Name="___FK_80a6a5602e4a55e50fad4b9a_00000" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="___FK_80a6a5602e4a55e50fad4b9a_00000"/>
+				<NavigationProperty Name="Blower" Relationship="bbad140c9f36b8000f817818.ConfigBlowerBlower" FromRole="FromRole_ConfigBlowerBlower" ToRole="ToRole_ConfigBlowerBlower"/>
+			</EntityType>
+			<Association Name="ConfigBlowerBlower">
+				<End Type="bbad140c9f36b8000f817818.Config" Multiplicity="1" Role="FromRole_ConfigBlowerBlower"/>
+				<End Type="bbad140c9f36b8000f817818.Blower" Multiplicity="1" Role="ToRole_ConfigBlowerBlower"/>
+				<ReferentialConstraint>
+					<Principal Role="ToRole_ConfigBlowerBlower">
+						<PropertyRef Name="ID"/>
+					</Principal>
+					<Dependent Role="FromRole_ConfigBlowerBlower">
+						<PropertyRef Name="___FK_8b6603cf600b82730fad4af4_00000"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

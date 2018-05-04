@@ -1,0 +1,14 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.gurizilla.PenaltyAlerter.controller.Launch" xmlns="sap.m">
+<App>
+      <pages>
+	<Page showHeader="false" enableScrolling="false">
+		<TileContainer id="container">
+			<StandardTile icon="sap-icon://add" type="Monitor" press="onNavToAlert" title="Criar Alerta"/>
+			<StandardTile icon="sap-icon://media-play" number="2" title="Decisões" info="Agora" infoState="Success"/>
+			<StandardTile icon="sap-icon://soccor" number="8" press="onNavToHistory" title="Histórico" />
+			<StandardTile icon="sap-icon://customize" press="onNavToConfig" title="Configurações" />
+		</TileContainer>
+	</Page>
+	 </pages>
+   </App>
+</mvc:View>

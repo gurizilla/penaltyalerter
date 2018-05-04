@@ -1,0 +1,170 @@
+{
+	"_version": "1.8.0",
+	"sap.app": {
+		"_version": "1.3.0",
+		"id": "com.gurizilla.PenaltyAlerter",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.2.2"
+		},
+		"dataSources": {
+			"local": {
+				"uri": "/localService/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"ach": "ach",
+		"resources": "resources.json",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.32.0"
+		}
+	},
+	"sap.ui": {
+		"_version": "1.3.0",
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"_version": "1.3.0",
+		"rootView": {
+			"viewName": "generated.app.view.Launch",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.50.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"": {
+				"dataSource": "local",
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"loadMetadataAsync": false,
+					"json": true,
+					"bJSON": true,
+					"defaultBindingMode": "TwoWay",
+					"useBatch": true,
+					"refreshAfterChange": false,
+					"disableHeadRequestForToken": true
+				}
+			}
+		},
+		"resources": {
+			"css": []
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "com.gurizilla.PenaltyAlerter.view",
+				"controlId": "App",
+				"clearTarget": false,
+				"controlAggregation": "pages",
+				"bypassed": {
+					"target": [
+						"Launch"
+					]
+				}
+			},
+			"targets": {
+				"Launch": {
+					"controlAggregation": "pages",
+					"viewName": "Launch",
+					"viewId": "Launch",
+					"viewLevel": 1,
+					"transition": "slide"
+				},
+				"AlertHistory": {
+					"controlAggregation": "pages",
+					"viewName": "AlertHistory",
+					"viewId": "AlertHistory",
+					"viewLevel": 2,
+					"transition": "slide"
+				},
+				"AddAlert": {
+					"controlAggregation": "pages",
+					"viewName": "AddAlert",
+					"viewId": "AddAlert",
+					"viewLevel": 3,
+					"transition": "slide"
+				},
+				"Config": {
+					"controlAggregation": "pages",
+					"viewName": "Config",
+					"viewId": "Config",
+					"viewLevel": 3,
+					"transition": "slide"
+				}
+			},
+			"routes": [
+				{
+					"pattern": "Launch/:context:",
+					"name": "Launch",
+					"target": [
+						"Launch"
+					]
+				},
+				{
+					"pattern": "",
+					"name": "default",
+					"target": [
+						"Launch"
+					]
+				},
+				{
+					"pattern": "AlertHistory/:context:",
+					"name": "AlertHistory",
+					"target": [
+						"AlertHistory"
+					]
+				},
+				{
+					"pattern": "AddAlert/:context:",
+					"name": "AddAlert",
+					"target": [
+						"AddAlert"
+					]
+				},
+				{
+					"pattern": "Config/:context:",
+					"name": "Config",
+					"target": [
+						"Config"
+					]
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,52 @@
+<mvc:View 
+	xmlns:mvc="sap.ui.core.mvc" controllerName="com.gurizilla.PenaltyAlerter.controller.Config" 
+	xmlns="sap.m" 
+	xmlns:form="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core">
+	<Page showHeader="true" title="Penalty Alerter" navButtonPress="onNavBack" showFooter="true" showNavButton="true">
+		<headerContent>
+			<Button icon="sap-icon://action" tooltip="Share" />
+		</headerContent>
+		<content>
+			<VBox>
+				<form:Form width="100%">
+					<form:title>
+						<core:Title text="Configurações" level="Auto"/>
+					</form:title>
+					<form:formContainers>
+						<form:FormContainer >
+							<form:formElements>
+								<form:FormElement label="Usuário">
+									<form:fields>
+										<Input required="true" id="user" />
+									</form:fields>
+								</form:FormElement>
+								<form:FormElement label="Ligas de Interesse">
+									<form:fields>
+										<MultiComboBox required="true" items="{path:'/LeagueSet'}">
+											<items>
+												<core:Item text="{Name}" key="{Id}"/>
+											</items>
+										</MultiComboBox>
+									</form:fields>
+								</form:FormElement>
+							</form:formElements>
+							<form:title/>
+						</form:FormContainer>
+					</form:formContainers>
+					<form:layout>
+						<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+					</form:layout>
+				</form:Form>
+			</VBox>
+		</content>
+		<footer>
+			<Bar design="Auto">
+				<contentRight>
+					<Button text="Salvar" type="Accept" iconFirst="true" width="auto" iconDensityAware="false"/>
+					<Button text="Cancelar" type="Reject" press="onNavBack" iconFirst="true" width="auto" iconDensityAware="false"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>
